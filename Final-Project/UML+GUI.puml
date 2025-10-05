@@ -1,0 +1,536 @@
+@startuml
+class gui.WinPane {
+- Text winText
+- ImageView playerXAnims
+- ImageView playerOAnims
+- ImageView tieAnims
+- javafx.scene.control.Button menuButton
++ <<Create>> WinPane()
++ void addAnims(ImageView,Pos)
++ void toggleXWin(boolean)
++ void toggleOWin(boolean)
++ void toggleTieWin(boolean)
++ Text getWinText()
++ ImageView getPlayerXAnims()
++ ImageView getPlayerOAnims()
++ ImageView getTieAnims()
++ Button getMenuButton()
+}
+class logic.BackgroundSong {
+- AudioClip musicPlayer
+- {static} BackgroundSong instance
++ void playBackgroundMusic()
++ void stopBackgroundMusic()
++ {static} BackgroundSong getInstance()
+}
+class logic.UseItemHandler {
++ {static} void useItem()
+}
+class item.TieBreaker {
++ <<Create>> TieBreaker()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class gui.HowToPlayPane {
+- javafx.scene.control.Button menuButton
+- ScrollPane scrollPane
+- Text infoText
+- Text magicEraserText
+- Text magicEraserUpgradedText
+- Text doubleSpellText
+- Text tripleSpellText
+- Text iceBlocksText
+- Text iceBlocksUpgradedText
+- Text destroyerRayText
+- Text tieBreakerText
+- Text craftingCatalystText
+- Text stuntGrenadeText
+- ImageView magicEraserIV
+- ImageView magicEraserUpgradedIV
+- ImageView doubleSpellIV
+- ImageView tripleSpellIV
+- ImageView iceBlocksIV
+- ImageView iceBlocksUpgradedIV
+- ImageView destroyerRayIV
+- ImageView tieBreakerIV
+- ImageView craftingCatalystIV
+- ImageView stuntGrenadeIV
++ <<Create>> HowToPlayPane()
++ Button getMenuButton()
+}
+class gui.ControlPane {
+- Text gameText
+- TicTacToeGlobal ticTacToeGlobal
++ <<Create>> ControlPane(TicTacToeGlobal)
+- void initializeGameText()
++ void updateGameText(String)
++ void initiateNewGame()
++ TicTacToeGlobal getTicTacToeGlobal()
+}
+class item.DoubleSpell {
+- boolean upgraded
++ <<Create>> DoubleSpell()
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class gui.TicTacToePane {
+- ArrayList<TicTacToeCell> allCells
+- Rectangle xRect
+- Pane xPane
+- Rectangle oRect
+- Rectangle tieRect
+- GridPane pane
++ <<Create>> TicTacToePane(int,int)
++ void initializeRect(Rectangle,Color)
++ void resetLocalBoard(int,int)
++ ArrayList<TicTacToeCell> getAllCells()
++ Rectangle getxRect()
++ Rectangle getoRect()
++ Rectangle getTieRect()
++ GridPane getPane()
+}
+class gui.XPlayerPane {
+- Text titleText
+- InventoryPane xInventoryUI
+- CraftingPane craftingPane
+- String xName
++ <<Create>> XPlayerPane()
++ Text getTitleText()
++ InventoryPane getxInventoryUI()
++ CraftingPane getCraftingPane()
++ String getxName()
++ void setxName(String)
+}
+class gui.TicTacToeGlobal {
+- ArrayList<TicTacToePane> allPanes
++ <<Create>> TicTacToeGlobal()
++ ArrayList<TicTacToePane> getAllPanes()
+}
+class gui.TicTacToeCell {
+- boolean isDrawn
+- Color baseColor
+- int xPosition
+- int yPosition
+- int xBoard
+- int yBoard
+- String oURL
+- String xURL
++ <<Create>> TicTacToeCell(int,int,int,int)
+- void onClickHandler()
+- void updateCellGraphic(int,int,int,int)
+- void draw(Image,Color)
+- void freezeCell()
++ void initializeCellColor()
++ void setDrawn(boolean)
++ void setxPosition(int)
++ int getyPosition()
++ void setyPosition(int)
++ int getxBoard()
++ void setxBoard(int)
++ int getyBoard()
++ void setyBoard(int)
++ Color getBaseColor()
++ void setBaseColor(Color)
+}
+class gui.InventoryPane {
+- int magicEraserCount
+- int magicEraserUpgradedCount
+- int doubleSpellCount
+- int tripleSpellCount
+- int iceBlocksCount
+- int iceBlocksUpgradedCount
+- int destroyerRayCount
+- int tieBreakerCount
+- int craftingCatalystCount
+- int stuntGrenadeCount
+- Text magicEraserText
+- Text magicEraserUpgradedText
+- Text doubleSpellText
+- Text tripleSpellText
+- Text iceBlocksText
+- Text iceBlocksUpgradedText
+- Text destroyerRayText
+- Text tieBreakerText
+- Text craftingCatalystText
+- Text stuntGrenadeText
+- ImageView magicEraserIV
+- ImageView magicEraserUpgradedIV
+- ImageView doubleSpellIV
+- ImageView tripleSpellIV
+- ImageView iceBlocksIV
+- ImageView iceBlocksUpgradedIV
+- ImageView destroyerRayIV
+- ImageView tieBreakerIV
+- ImageView craftingCatalystIV
+- ImageView stuntGrenadeIV
++ <<Create>> InventoryPane()
+- void initializeIcon(ImageView,Text)
++ Text getMagicEraserText()
++ void setMagicEraserText(Text)
++ Text getMagicEraserUpgradedText()
++ void setMagicEraserUpgradedText(Text)
++ Text getDoubleSpellText()
++ void setDoubleSpellText(Text)
++ Text getTripleSpellText()
++ void setTripleSpellText(Text)
++ Text getIceBlocksText()
++ void setIceBlocksText(Text)
++ Text getIceBlocksUpgradedText()
++ void setIceBlocksUpgradedText(Text)
++ Text getDestroyerRayText()
++ void setDestroyerRayText(Text)
++ Text getTieBreakerText()
++ void setTieBreakerText(Text)
++ Text getCraftingCatalystText()
++ void setCraftingCatalystText(Text)
++ Text getStuntGrenadeText()
++ void setStuntGrenadeText(Text)
++ ImageView getMagicEraserIV()
++ ImageView getMagicEraserUpgradedIV()
++ ImageView getDoubleSpellIV()
++ ImageView getTripleSpellIV()
++ ImageView getIceBlocksIV()
++ ImageView getIceBlocksUpgradedIV()
++ ImageView getDestroyerRayIV()
++ ImageView getTieBreakerIV()
++ ImageView getCraftingCatalystIV()
++ ImageView getStuntGrenadeIV()
+}
+class gui.UIConstants {
++ {static} int SCENE_WIDTH
++ {static} int SCENE_HEIGHT
++ {static} int GRAPHIC_SIZE
++ {static} String MAGIC_ERASER_URL
++ {static} String UPGRADED_MAGIC_ERASER_URL
++ {static} String DOUBLE_SPELL_URL
++ {static} String TRIPLE_SPELL_URL
++ {static} String ICEBLOCKS_URL
++ {static} String PACKED_ICEBLOCKS_URL
++ {static} String DESTROYER_RAY_URL
++ {static} String TIE_BREAKER_URL
++ {static} String CRAFTING_CATALYST_URL
++ {static} String STUNT_GRENADE_URL
++ {static} String BG_URL
++ {static} String PLAYER_X_URL
++ {static} String PLAYER_O_URL
++ {static} String TITLE_URL
++ {static} String X_WIN_URL
++ {static} String O_WIN_URL
++ {static} String TIE_URL
+}
+class gui.MenuPane {
+- Button startBtn
+- Button howToPlayBtn
+- String playerX
+- String playerO
+- String titleURL
+- String bgURL
+- VBox centerPane
+- HBox inputPane
+- TextField xInput
+- TextField oInput
+- String xName
+- String oName
++ <<Create>> MenuPane()
++ EventHandler<KeyEvent> maxLength(Integer)
++ Button getStartBtn()
++ Button getHowToPlayBtn()
++ TextField getxInput()
++ void setxInput(TextField)
++ TextField getoInput()
++ void setoInput(TextField)
++ String getxName()
++ void setxName(String)
++ String getoName()
++ void setoName(String)
+}
+class logic.GameLogic {
+- {static} GameLogic instance
+- ControlPane controlPane
+- InfoPane infoPane
+- XPlayerPane XPlayerPane
+- OPlayerPane OPlayerPane
+- boolean canDraw
+- int[][][][] board
+- int[][][][] lootTable
+- int[][] globalBoard
+- char currentPlayer
+- int LastRoundR
+- int LastRoundC
+- boolean gameEnd
+- boolean isFilled
+- boolean isFound
+- int finalGameState
+- HashMap<String,Integer> OplayerItem
+- HashMap<String,Integer> XplayerItem
+- ArrayList<BaseItem> xInventory
+- ArrayList<BaseItem> oInventory
+- Player playerO
+- Player playerX
+- BaseItem selectedXItem
+- BaseItem selectedOItem
+- boolean roundItemUsed
+- int stuntMove
+- int moveNumber
+- int multipleTurns
+- boolean tieBreaker
+- boolean erasePhase
+- boolean upgradedErasePhase
+- int frozenRoundLeft
+- int iceBlocksLeft
+~ <<Create>> GameLogic()
++ void newGame()
++ void drawNumber(int,int,int,int)
++ void fillLoot()
++ void clearLootTable()
++ boolean getItem(int,int,int,int)
++ void updateHighLight()
++ void removeHighLight()
++ void updateLocalUI(int,int,int)
++ boolean checkLastRound(int,int)
++ boolean checkValidMove(int,int,int,int)
++ boolean checkFull(int,int)
++ boolean checkGlobalFull()
++ boolean checkLocalWinner(int,int,int)
++ boolean checkGlobalWin(int)
++ void initiatingWin()
++ int[][][][] getBoard()
++ int[][] getGlobalBoard()
++ char getCurrentPlayer()
++ void setCurrentPlayer(char)
++ int getLastRoundR()
++ void setLastRoundR(int)
++ int getLastRoundC()
++ void setLastRoundC(int)
++ boolean isGameEnd()
++ void setGameEnd(boolean)
++ {static} GameLogic getInstance()
++ boolean isCanDraw()
++ void setCanDraw(boolean)
++ ControlPane getControlPane()
++ void setControlPane(ControlPane)
++ void setLootTable(int[][][][])
++ int[][][][] getLootTable()
++ int getFinalGameState()
++ void setFinalGameState(int)
++ Player getPlayerO()
++ void setPlayerO(Player)
++ Player getPlayerX()
++ void setPlayerX(Player)
++ XPlayerPane getXPlayerPane()
++ void setXPlayerPane(XPlayerPane)
++ OPlayerPane getOPlayerPane()
++ void setOPlayerPane(OPlayerPane)
++ boolean isItemFound()
++ HashMap<String,Integer> getOplayerItem()
++ void setOplayerItem(HashMap<String,Integer>)
++ HashMap<String,Integer> getXplayerItem()
++ void setXplayerItem(HashMap<String,Integer>)
++ ArrayList<BaseItem> getxInventory()
++ void setxInventory(ArrayList<BaseItem>)
++ ArrayList<BaseItem> getoInventroy()
++ void setoInventory(ArrayList<BaseItem>)
++ BaseItem getXSelectedItem()
++ void setXSelectedItem(BaseItem)
++ BaseItem getOSelectedItem()
++ void setOSelectedItem(BaseItem)
++ InfoPane getInfoPane()
++ void setInfoPane(InfoPane)
++ boolean isRoundItemUsed()
++ void setRoundItemUsed(boolean)
++ int getMoveNumber()
++ void setMoveNumber(int)
++ int getStuntMove()
++ void setStuntMove(int)
++ int getMultipleTurns()
++ void setMultipleTurns(int)
++ boolean isTieBreaker()
++ void setTieBreaker(boolean)
++ boolean isErasePhase()
++ void setErasePhase(boolean)
++ boolean isUpgradedErasePhase()
++ void setUpgradedErasePhase(boolean)
++ int getFrozenRoundLeft()
++ void setFrozenRoundLeft(int)
++ int getIceBlocksLeft()
++ void setIceBlocksLeft(int)
+}
+class item.MagicEraser {
+- boolean upgraded
++ <<Create>> MagicEraser()
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class logic.GameUtils {
++ {static} int paneIndexConverter(int,int)
++ {static} int[] reversePaneIndexConverter(int)
++ {static} void fillLootTable(int[][][][])
++ {static} void removeInventoryUI(char)
++ {static} void updateCertainInventoryUI(char,BaseItem)
++ {static} void updateInvetoryUI()
++ {static} void removeItemFromInventory(BaseItem)
++ {static} boolean canRemove(BaseItem)
++ {static} void undoTake(BaseItem)
++ {static} boolean isCraftable(BaseItem,BaseItem)
++ {static} void addCraftedItem(BaseItem)
+}
+class item.StuntGrenade {
++ <<Create>> StuntGrenade()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class gui.ItemBox {
+- int GRAPHIC_SIZE
+- ImageView magicEraserIV
+- ImageView magicEraserUpgradedIV
+- ImageView doubleSpellIV
+- ImageView tripleSpellIV
+- ImageView iceBlocksIV
+- ImageView iceBlocksUpgradedIV
+- ImageView destroyerRayIV
+- ImageView tieBreakerIV
+- ImageView craftingCatalystIV
+- ImageView stuntGrenadeIV
++ <<Create>> ItemBox()
++ void setUpIcon(ImageView)
++ void appear(BaseItem)
++ void disappear()
++ ImageView getMagicEraserIV()
++ ImageView getMagicEraserUpgradedIV()
++ ImageView getDoubleSpellIV()
++ ImageView getTripleSpellIV()
++ ImageView getIceBlocksIV()
++ ImageView getIceBlocksUpgradedIV()
++ ImageView getDestroyerRayIV()
++ ImageView getTieBreakerIV()
++ ImageView getCraftingCatalystIV()
++ ImageView getStuntGrenadeIV()
+}
+class Player.Player {
+- String name
++ <<Create>> Player(String)
++ String getName()
++ void setName(String)
+}
+class item.DestroyerRay {
++ <<Create>> DestroyerRay()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+abstract class base.BaseItem {
+- String name
++ <<Create>> BaseItem(String)
++ String getName()
++ void setName(String)
++ {abstract}String toString()
++ {abstract}void use()
++ Object clone()
++ {abstract}void updateInvetoryPaneUI(InventoryPane,int)
+}
+class item.IceBlocks {
+- boolean upgraded
++ <<Create>> IceBlocks()
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class gui.OPlayerPane {
+- Text titleText
+- InventoryPane oInvetory
+- Button useBtn
+- Button addCraftBtn
+- String oName
++ <<Create>> OPlayerPane()
++ Text getTitleText()
++ InventoryPane getoInvetoryUI()
++ String getoName()
++ void setoName(String)
++ Button getUseBtn()
+}
+class gui.InfoPane {
+- Text infoText
++ <<Create>> InfoPane()
+- void initializeInfoText()
++ void setInfoText(String)
+}
+class logic.ItemMethods {
+- {static} ItemMethods instance
++ void eraseLocalPane()
++ void eraseGlobalPane()
++ void doubleRound()
++ void tripleRound()
++ void blockCell(int)
++ void destroyItem()
++ void tieBreaking()
++ void stuntPlayer()
++ {static} ItemMethods getInstance()
+}
+class item.CraftingCatalyst {
++ <<Create>> CraftingCatalyst()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class gui.CraftingPane {
+- ItemBox item1Box
+- ItemBox item2Box
+- ItemBox resultBox
+- Button craftBtn
+- Button clearBtn
+- ArrayList<BaseItem> ingredients
++ <<Create>> CraftingPane()
++ void addIngredients(BaseItem)
++ void onClearClicked()
++ void updateResultUI()
++ void onCraftHandler()
++ void clearItemBox()
++ void initiateCrafting(BaseItem,String)
++ ArrayList<BaseItem> getIngredients()
+}
+interface Interface.Upgradeable {
+~ void upgrade()
+~ void setUpgraded(boolean)
+~ boolean isUpgraded()
+}
+
+
+gui.StackPane <|-- gui.WinPane
+base.BaseItem <|-- item.TieBreaker
+gui.StackPane <|-- gui.HowToPlayPane
+javafx.scene.layout.HBox <|-- gui.ControlPane
+Interface.Upgradeable <|.. item.DoubleSpell
+base.BaseItem <|-- item.DoubleSpell
+gui.StackPane <|-- gui.TicTacToePane
+javafx.scene.layout.VBox <|-- gui.XPlayerPane
+gui.GridPane <|-- gui.TicTacToeGlobal
+gui.Pane <|-- gui.TicTacToeCell
+gui.GridPane <|-- gui.InventoryPane
+gui.StackPane <|-- gui.MenuPane
+Interface.Upgradeable <|.. item.MagicEraser
+base.BaseItem <|-- item.MagicEraser
+logic.Thread <|-- logic.GameUtils
+base.BaseItem <|-- item.StuntGrenade
+javafx.scene.layout.StackPane <|-- gui.ItemBox
+base.BaseItem <|-- item.DestroyerRay
+base.Cloneable <|.. base.BaseItem
+Interface.Upgradeable <|.. item.IceBlocks
+base.BaseItem <|-- item.IceBlocks
+gui.VBox <|-- gui.OPlayerPane
+gui.HBox <|-- gui.InfoPane
+base.BaseItem <|-- item.CraftingCatalyst
+gui.VBox <|-- gui.CraftingPane
+@enduml

@@ -1,0 +1,227 @@
+@startuml
+class item.MagicEraser {
+- boolean upgraded
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class item.TieBreaker {
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class logic.BackgroundSong {
+- AudioClip musicPlayer
+- {static} BackgroundSong instance
++ void playBackgroundMusic()
++ void stopBackgroundMusic()
++ {static} BackgroundSong getInstance()
+}
+class logic.UseItemHandler {
++ {static} void useItem()
+}
+class item.StuntGrenade {
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class logic.GameUtils {
++ {static} int paneIndexConverter(int,int)
++ {static} int[] reversePaneIndexConverter(int)
++ {static} void fillLootTable(int[][][][])
++ {static} void removeInventoryUI(char)
++ {static} void updateCertainInventoryUI(char,BaseItem)
++ {static} void updateInvetoryUI()
++ {static} void removeItemFromInventory(BaseItem)
++ {static} boolean canRemove(BaseItem)
++ {static} void undoTake(BaseItem)
++ {static} boolean isCraftable(BaseItem,BaseItem)
++ {static} void addCraftedItem(BaseItem)
+}
+class item.DestroyerRay {
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class Player.Player {
+- String name
++ String getName()
++ void setName(String)
+}
+class item.DoubleSpell {
+- boolean upgraded
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+abstract class base.BaseItem {
+- String name
++ String getName()
++ void setName(String)
++ {abstract}String toString()
++ {abstract}void use()
++ Object clone()
++ {abstract}void updateInvetoryPaneUI(InventoryPane,int)
+}
+class item.IceBlocks {
+- boolean upgraded
++ void upgrade()
++ void setUpgraded(boolean)
++ boolean isUpgraded()
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class logic.ItemMethods {
+- {static} ItemMethods instance
++ void eraseLocalPane()
++ void eraseGlobalPane()
++ void doubleRound()
++ void tripleRound()
++ void blockCell(int)
++ void destroyItem()
++ void tieBreaking()
++ void stuntPlayer()
++ {static} ItemMethods getInstance()
+}
+class item.CraftingCatalyst {
++ String toString()
++ void use()
++ void updateInvetoryPaneUI(InventoryPane,int)
+}
+class logic.GameLogic {
+- {static} GameLogic instance
+- ControlPane controlPane
+- InfoPane infoPane
+- XPlayerPane XPlayerPane
+- OPlayerPane OPlayerPane
+- boolean canDraw
+- int[][][][] board
+- int[][][][] lootTable
+- int[][] globalBoard
+- char currentPlayer
+- int LastRoundR
+- int LastRoundC
+- boolean gameEnd
+- boolean isFilled
+- boolean isFound
+- int finalGameState
+- HashMap<String,Integer> OplayerItem
+- HashMap<String,Integer> XplayerItem
+- ArrayList<BaseItem> xInventory
+- ArrayList<BaseItem> oInventory
+- Player playerO
+- Player playerX
+- BaseItem selectedXItem
+- BaseItem selectedOItem
+- boolean roundItemUsed
+- int stuntMove
+- int moveNumber
+- int multipleTurns
+- boolean tieBreaker
+- boolean erasePhase
+- boolean upgradedErasePhase
+- int frozenRoundLeft
+- int iceBlocksLeft
++ void newGame()
++ void drawNumber(int,int,int,int)
++ void fillLoot()
++ void clearLootTable()
++ boolean getItem(int,int,int,int)
++ void updateHighLight()
++ void removeHighLight()
++ void updateLocalUI(int,int,int)
++ boolean checkLastRound(int,int)
++ boolean checkValidMove(int,int,int,int)
++ boolean checkFull(int,int)
++ boolean checkGlobalFull()
++ boolean checkLocalWinner(int,int,int)
++ boolean checkGlobalWin(int)
++ void initiatingWin()
++ int[][][][] getBoard()
++ int[][] getGlobalBoard()
++ char getCurrentPlayer()
++ void setCurrentPlayer(char)
++ int getLastRoundR()
++ void setLastRoundR(int)
++ int getLastRoundC()
++ void setLastRoundC(int)
++ boolean isGameEnd()
++ void setGameEnd(boolean)
++ {static} GameLogic getInstance()
++ boolean isCanDraw()
++ void setCanDraw(boolean)
++ ControlPane getControlPane()
++ void setControlPane(ControlPane)
++ void setLootTable(int[][][][])
++ int[][][][] getLootTable()
++ int getFinalGameState()
++ void setFinalGameState(int)
++ Player getPlayerO()
++ void setPlayerO(Player)
++ Player getPlayerX()
++ void setPlayerX(Player)
++ XPlayerPane getXPlayerPane()
++ void setXPlayerPane(XPlayerPane)
++ OPlayerPane getOPlayerPane()
++ void setOPlayerPane(OPlayerPane)
++ boolean isItemFound()
++ HashMap<String,Integer> getOplayerItem()
++ void setOplayerItem(HashMap<String,Integer>)
++ HashMap<String,Integer> getXplayerItem()
++ void setXplayerItem(HashMap<String,Integer>)
++ ArrayList<BaseItem> getxInventory()
++ void setxInventory(ArrayList<BaseItem>)
++ ArrayList<BaseItem> getoInventroy()
++ void setoInventory(ArrayList<BaseItem>)
++ BaseItem getXSelectedItem()
++ void setXSelectedItem(BaseItem)
++ BaseItem getOSelectedItem()
++ void setOSelectedItem(BaseItem)
++ InfoPane getInfoPane()
++ void setInfoPane(InfoPane)
++ boolean isRoundItemUsed()
++ void setRoundItemUsed(boolean)
++ int getMoveNumber()
++ void setMoveNumber(int)
++ int getStuntMove()
++ void setStuntMove(int)
++ int getMultipleTurns()
++ void setMultipleTurns(int)
++ boolean isTieBreaker()
++ void setTieBreaker(boolean)
++ boolean isErasePhase()
++ void setErasePhase(boolean)
++ boolean isUpgradedErasePhase()
++ void setUpgradedErasePhase(boolean)
++ int getFrozenRoundLeft()
++ void setFrozenRoundLeft(int)
++ int getIceBlocksLeft()
++ void setIceBlocksLeft(int)
+}
+interface Interface.Upgradeable {
+~ void upgrade()
+~ void setUpgraded(boolean)
+~ boolean isUpgraded()
+}
+
+
+Interface.Upgradeable <|.. item.MagicEraser
+base.BaseItem <|-- item.MagicEraser
+base.BaseItem <|-- item.TieBreaker
+base.BaseItem <|-- item.StuntGrenade
+logic.Thread <|-- logic.GameUtils
+base.BaseItem <|-- item.DestroyerRay
+Interface.Upgradeable <|.. item.DoubleSpell
+base.BaseItem <|-- item.DoubleSpell
+base.Cloneable <|.. base.BaseItem
+Interface.Upgradeable <|.. item.IceBlocks
+base.BaseItem <|-- item.IceBlocks
+base.BaseItem <|-- item.CraftingCatalyst
+@enduml
