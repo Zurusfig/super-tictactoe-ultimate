@@ -28,9 +28,6 @@ public class BackgroundSong {
             musicPlayer.play();
         });
         thread.start();
-//        musicPlayer.setOnReady(() -> {
-//            musicPlayer.play();
-//        });
 
 
     }
